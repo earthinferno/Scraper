@@ -1,4 +1,5 @@
 ﻿using System;
+using SeeTicketsScraper.Services;
 
 namespace SeeTicketsScraper
 {
@@ -6,7 +7,14 @@ namespace SeeTicketsScraper
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var eventFinder = new EventFinder(
+                new HtmlUtility(), 
+                new SeeTicketsScraperService(), 
+                new JsonEventExporter(),
+                "https://www.seetickets.com/search?BrowseOrder=Relevance&q=&s=&se=false&c=3&dst=&dend=&l"
+            );
+
+            eventFinder.ExportEventData();
         }
     }
 }
