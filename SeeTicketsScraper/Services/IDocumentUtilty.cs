@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeeTicketsScraper
+namespace SeeTicketsScraper.Services
 {
     public interface IDocumentUtilty
     {

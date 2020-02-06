@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeeTicketsScraper
+namespace SeeTicketsScraper.Services
 {
     // I would not normally anotate with comments but in this context I will
     // A wrapper to make the specific library code injectable.
