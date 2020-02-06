@@ -9,6 +9,17 @@ using System.Xml.XPath;
 
 namespace SeeTicketsScraper.Services
 {
+    // I would not normally anotate with comments but in this context I will
+    // The code in here is terrible, buggy and not extendible.
+    // I planned to refactor this to greatness but....
+    // The articles on the SeeTickets page contain html that is not XHTML compliant so only
+    // event name was easy to get at. I've used a mixture on Linq extension methods and Agility
+    // pack methods but not much XPath.
+    // For the actual searching of nodes it would have been nice to pass in delagates with the actual
+    // business logic (knowledge of html structure) but I would need to spend some time sorting out 
+    // the code first before i could get to refactor this.
+    // I thought it would be better to focus on the client class 'Event Finder' to demonstrate some
+    // software engineering principles.
     public class SeeTicketsScraperService : IScraperService
     {
       
@@ -49,6 +60,7 @@ namespace SeeTicketsScraper.Services
 
         public string GetVenueName(HtmlNode node)
         {
+            ////This code is awful
             try
             {
                 var subText = node
@@ -71,6 +83,7 @@ namespace SeeTicketsScraper.Services
 
         public string GetDate(HtmlNode node)
         {
+            ////This code is awful
             try
             {
                 var subText = node
@@ -92,6 +105,7 @@ namespace SeeTicketsScraper.Services
 
         public static string GetImageLocation(HtmlNode node)
         {
+            ////This code is awful.
             try
             {
                 return node

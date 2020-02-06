@@ -13,6 +13,7 @@ namespace SeeTicketsScraper
                 new HtmlUtility(), 
                 new SeeTicketsScraperService(), 
                 new JsonDataExporter<EventModel>(),
+                (x) => { Console.WriteLine(x); },
                 "https://www.seetickets.com/search?BrowseOrder=Relevance&q=&s=&se=false&c=3&dst=&dend=&l"
             );
 
