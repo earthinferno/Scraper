@@ -14,7 +14,7 @@ namespace SeeTicketsScraperXUnitTestProject
     {
         readonly Mock<IDocumentUtilty> mockDocumentUtility;
         readonly Mock<IScraperService> mockScraperService;
-        readonly Mock<IEventExporter> mockEventExporter;
+        readonly Mock<IDataExporter<EventModel>> mockEventExporter;
         readonly HtmlDocument _stubDocument;
         readonly List<EventModel> _stubEventsList;
 
@@ -24,7 +24,7 @@ namespace SeeTicketsScraperXUnitTestProject
         {
             mockDocumentUtility = new Mock<IDocumentUtilty>();
             mockScraperService = new Mock<IScraperService>();
-            mockEventExporter = new Mock<IEventExporter>();
+            mockEventExporter = new Mock<IDataExporter<EventModel>>();
 
             _stubDocument = new HtmlDocument();
             mockDocumentUtility.Setup(x => x.Document).Returns(_stubDocument);
@@ -32,7 +32,7 @@ namespace SeeTicketsScraperXUnitTestProject
             _stubEventsList = new List<EventModel>();
             mockScraperService.Setup(x => x.GetEvents(_stubDocument)).Returns(_stubEventsList);
 
-            mockEventExporter.Setup(x => x.ExportEvents(It.IsAny<List<EventModel>>()));
+            mockEventExporter.Setup(x => x.ExportData(It.IsAny<List<EventModel>>()));
 
 
             string document = "";
@@ -45,7 +45,7 @@ namespace SeeTicketsScraperXUnitTestProject
         {
             _eventFinder.ExportEventData();
 
-            mockEventExporter.Verify(x => x.ExportEvents(It.Is<List<EventModel>>(l => l == _stubEventsList)), Times.Once());
+            mockEventExporter.Verify(x => x.ExportData(It.Is<List<EventModel>>(l => l == _stubEventsList)), Times.Once());
         }
 
     }

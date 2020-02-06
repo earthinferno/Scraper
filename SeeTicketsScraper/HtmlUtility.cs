@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace SeeTicketsScraper
 {
+    // I would not normally anotate with comments but in this context I will
+    // A wrapper to make the specific library code injectable.
     public class HtmlUtility: IDocumentUtilty
     {
         public HtmlDocument Document { get; private set; }

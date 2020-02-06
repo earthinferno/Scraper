@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using SeeTicketsScraper.Models;
 using SeeTicketsScraper.Services;
 
 namespace SeeTicketsScraper
@@ -10,7 +12,7 @@ namespace SeeTicketsScraper
             var eventFinder = new EventFinder(
                 new HtmlUtility(), 
                 new SeeTicketsScraperService(), 
-                new JsonEventExporter(),
+                new JsonDataExporter<EventModel>(),
                 "https://www.seetickets.com/search?BrowseOrder=Relevance&q=&s=&se=false&c=3&dst=&dend=&l"
             );
 

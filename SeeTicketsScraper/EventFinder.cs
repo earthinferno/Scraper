@@ -6,16 +6,23 @@ using System.Text;
 
 namespace SeeTicketsScraper
 {
+    // I would not normally anotate with comments but in this context I will
+    // The intention behind this class is to be a composite object with it's specific behaviour injected 
+    // into the constructor. It is using Dependancy Inversion as it knows not what library objects it will
+    // be using just there abstracted behaviour.
+    // I was unsure where to delegate the responsibility to what to export the data too (console,file,streem, etc) 
+    // but I decided that would be handled by the exporter. The exporter itself could be injected with the actual 
+    // for this specific concern.
     public class EventFinder
     {
         readonly IDocumentUtilty _documentUtilty;
         readonly IScraperService _scraperService;
-        readonly IEventExporter _eventExporter;
+        readonly IDataExporter<EventModel> _eventExporter;
 
         public EventFinder(
             IDocumentUtilty documentUtility,
             IScraperService scraperService,
-            IEventExporter eventExporter,
+            IDataExporter<EventModel> eventExporter,
             string document)
         {
             _scraperService = scraperService;
@@ -34,7 +41,7 @@ namespace SeeTicketsScraper
         public void ExportEventData()
         {
             var events = _scraperService.GetEvents(_documentUtilty.Document);
-            _eventExporter.ExportEvents(events);
+            _eventExporter.ExportData(events);
         }
     }
 }

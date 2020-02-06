@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace SeeTicketsScraper.Services
 {
-    public interface IEventExporter
+    public interface IDataExporter<T>
     {
-        public void ExportEvents(List<EventModel> eventData);
+        public void ExportData(List<T> eventData);
     }
 }
